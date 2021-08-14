@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<style>
+    #user-input-button {
+        border-radius: 10px;
+        border-color:   #9147ff;
+        background-color:  #9147ff;
+        color: white;
+        font-weight: bold;
+        height: 30px;
+        width: 15%;
+    }
+    #user-input-button:hover {
+        border-radius: 10px;
+        border-color:  #7435d3;
+        background-color: #7435d3;
+        color: white;
+        font-weight: bold;
+        height: 30px;
+        width: 60px;
+    }
+    #chat-logs {
+        background-color: black;
+        height: 500px;
+        width: 420px;
+        color: white;
+    }
+    #user-text-field {
+        margin: auto;
+        border-radius: 3px;
+        background-color: rgb(167, 167, 167);
+        color: rgb(200, 200, 200);
+        width: 80%;
+        height: 35px;
+    }
+    #user-text-field:focus {
+        border-width: 2px;
+        border-color: #9147ff;
+        background-color: black;
+        color: white;
+        outline: none;
+
+    }
+    #user-text-field-onlick {
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: #9147ff;
+        background-color: black;
+        color: white;
+
+    }
+    #user-input {
+        background-color: black;
+        width: 420px;
+        height: 60px;
+    }
+</style>
+<head>
+
+</head>
+<body>
+<div id="chat-logs">
+    
+</div>
+<div id="user-input">
+    <input id="user-text-field" type="text" placeholder="    Send a message" onkeypress="EventKeyPressMessage(event)"">
+    <button id="user-input-button" onclick="sendMessage()">Send</button>
+</div>
+<script>
+    var logs = "";
+    const user = {
+        id: '001',
+        name: 'duncheon'
+    }
+    // const user_input = document.getElementById("user-text-field");
+    // console.log(user_input);
+    // user_input.addEventListener("keypress", function(event) {
+    //     if (event.keyCode === 13) {
+    //         event.preventDefault();
+    //         document.getElementById("user-input-button").click();
+    //     }
+    // });
+    function sendMessage() {
+        const message_value = document.getElementById("user-text-field").value;
+        const message = `${user.name}: ${message_value}`;
+        if (message_value.length > 0) {
+        document.getElementById("user-text-field").value = '';
+        logs += message + '\n';
+        printMessage(message);
+        }
+    }
+    function printMessage(message) {
+        const chat_logs_div = document.getElementById("chat-logs");
+        // var tag = document.createElement("div");
+        // tag.appendChild(message);
+        // tag.id = "chat-messages";
+        // chat_logs_div.appendChilde(tag);
+        
+        // chat_logs_div.innerText = logs;
+        chat_logs_div.innerText += message + '\n'; 
+    }
+    function EventKeyPressMessage(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("user-input-button").click();
+        }
+    }
+</script>
+</body>
+</html>
